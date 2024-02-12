@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="mail.Chatter" t-inherit-mode="extension" owl="1">
+          <xpath expr="//span[hasclass('o-mail-Chatter-topbarGrow')]" position="after">
+            <button class="btn btn-light o_ChatterTopbar_button" type="button"
+                    t-on-click="onClickChatterSortByAscending" title="Sort By Dates">
+                <i class="fa fa-sort fa-lg"/>
+            </button>
+        </xpath>
+        <xpath expr="//t[@t-if='props.hasMessageList']" position="replace">
+            <t t-if="props.Ascending">
+                <t t-if="props.hasMessageList">
+                        <Thread t-if="!state.isSearchOpen" thread="state.thread" t-key="state.thread.localId"
+                                order="'asc'" scrollRef="rootRef" jumpPresent="state.jumpThreadPresent"
+                        />
+                    </t>
+            </t>
+            <t else="">
+                <t t-if="props.hasMessageList">
+                        <Thread t-if="!state.isSearchOpen" thread="state.thread" t-key="state.thread.localId"
+                                order="'desc'" scrollRef="rootRef" jumpPresent="state.jumpThreadPresent"
+                        />
+                    </t>
+            </t>
+
+        </xpath>
+
+    </t>
+    <t t-inherit="mail.Thread" t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//t[@t-foreach]" position="replace">
+            <t t-foreach="props.order === 'asc' ? props.thread.nonEmptyMessages : [...props.thread.nonEmptyMessages].reverse()"
+               t-as="msg" t-key="msg.id">
+                    <t t-if="!(props.thread.Ascending)">
+                        <t t-if="msg.dateDay !== currentDay and props.showDates">
+                            <DateSection date="msg.dateDay" className="'pt-4'"/>
+                            <t t-set="currentDay" t-value="msg.dateDay"/>
+                        </t>
+                        <Transition t-if="props.thread.model === 'discuss.channel'"
+                                    visible="props.thread.seen_message_id === (prevMsg?.id ?? false)" name="'o-fade'"
+                                    t-slot-scope="transition">
+                            <div class="o-mail-Thread-newMessage d-flex align-items-center fw-bolder"
+                                 t-att-class="{ 'opacity-0': transition.className.includes('o-fade-leave') }">
+                                <hr class="ms-2 flex-grow-1 border border-danger opacity-50"/>
+                                <span class="px-2 text-danger">New messages</span>
+                                <hr class="me-2 flex-grow-1 border border-danger opacity-50"/>
+                            </div>
+                        </Transition>
+                        <t t-if="msg.isNotification">
+                            <t t-call="mail.NotificationMessage"/>
+                        </t>
+                        <Message t-else=""
+                                 isInChatWindow="props.isInChatWindow"
+                                 message="msg"
+                                 messageToReplyTo="props.messageToReplyTo"
+                                 squashed="isSquashed(msg, prevMsg)"
+                                 highlighted="messageHighlight?.highlightedMessageId === msg.id"
+                                 onParentMessageClick="() => msg.parentMessage and env.messageHighlight?.highlightMessage(msg.parentMessage, props.thread)"
+                                 thread="props.thread"
+                                 messageEdition="props.messageEdition"
+                                 isFirstMessage="msg_first"
+                                 hasActions="props.messageActions"
+                                 showDates="props.showDates"
+                        />
+                        <t t-set="prevMsg" t-value="msg"/>
+
+                    </t>
+                </t>
+            <t t-foreach="props.order === 'desc' ? props.thread.nonEmptyMessages : [...props.thread.nonEmptyMessages]"
+               t-as="msg" t-key="msg.id">
+                    <t t-if="props.order == 'desc'">
+                        <t t-if="props.thread.Ascending">
+                            <t t-if="msg.dateDay !== currentDay and props.showDates">
+                                <DateSection date="msg.dateDay" className="'pt-4'"/>
+                                <t t-set="currentDay" t-value="msg.dateDay"/>
+                            </t>
+                            <Transition t-if="props.thread.model === 'discuss.channel'"
+                                        visible="props.thread.seen_message_id === (prevMsg?.id ?? false)"
+                                        name="'o-fade'" t-slot-scope="transition">
+                                <div class="o-mail-Thread-newMessage d-flex align-items-center fw-bolder"
+                                     t-att-class="{ 'opacity-0': transition.className.includes('o-fade-leave') }">
+                                    <hr class="ms-2 flex-grow-1 border border-danger opacity-50"/>
+                                    <span class="px-2 text-danger">New messages</span>
+                                    <hr class="me-2 flex-grow-1 border border-danger opacity-50"/>
+                                </div>
+                            </Transition>
+                            <t t-if="msg.isNotification">
+                                <t t-call="mail.NotificationMessage"/>
+                            </t>
+                            <Message t-else=""
+                                     isInChatWindow="props.isInChatWindow"
+                                     message="msg"
+                                     messageToReplyTo="props.messageToReplyTo"
+                                     squashed="isSquashed(msg, prevMsg)"
+                                     highlighted="messageHighlight?.highlightedMessageId === msg.id"
+                                     onParentMessageClick="() => msg.parentMessage and env.messageHighlight?.highlightMessage(msg.parentMessage, props.thread)"
+                                     thread="props.thread"
+                                     messageEdition="props.messageEdition"
+                                     isFirstMessage="msg_first"
+                                     hasActions="props.messageActions"
+                                     showDates="props.showDates"
+                            />
+                            <t t-set="prevMsg" t-value="msg"/>
+                        </t>
+
+                    </t>
+                </t>
+        </xpath>
+    </t>
+</templates>
+
+

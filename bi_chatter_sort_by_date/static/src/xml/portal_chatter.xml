@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+        <t t-name="Composer" t-inherit="portal.Composer" t-inherit-mode="extension">
+            <xpath expr="//div[hasclass('o_portal_chatter_composer')]" position="inside">
+            <div class="row">
+                <div class="flex-grow-1">
+                    <div class="float-end">
+                        <button class="btn btn-light o_Chatter_sort_button" type="button" title="Sort By Dates">
+                            <span>Sort By Date : </span>
+                            <i class="fa fa-sort fa-lg"/>
+                        </button>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+
+</templates>
