@@ -34,42 +34,42 @@
             <field name="target">new</field>
         </record>
 
-        <record id="project_task_inherit_bi_form_view" model="ir.ui.view">
-            <field name="name">project_task_inherit_bi_form_view</field>
-            <field name="model">project.task</field>
-            <field name="inherit_id" ref="project.view_task_form2"/>
-            <field name="arch" type="xml">
-                <xpath expr="//page[@name='sub_tasks_page']" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </xpath>
+<!--        <record id="project_task_inherit_bi_form_view" model="ir.ui.view">-->
+<!--            <field name="name">project_task_inherit_bi_form_view</field>-->
+<!--            <field name="model">project.task</field>-->
+<!--            <field name="inherit_id" ref="project.view_task_form2"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//page[@name='sub_tasks_page']" position="attributes">-->
+<!--                    <attribute name="invisible">True</attribute>-->
+<!--                </xpath>-->
 
-                <field name="user_ids" position="after">
-                    <field name="task_parent_id" />
-                </field>
-                <header>
-                    <button name="%(action_create_subtask_wizard)d"
-                        string="Create SubTask"
-                        type="action"
-                        class="oe_highlight" invisible='is_subtask == True'/>
-                        <field name="is_subtask" force_save="1" invisible="1"/>
-                </header>
+<!--                <field name="user_ids" position="after">-->
+<!--                    <field name="task_parent_id" />-->
+<!--                </field>-->
+<!--                <header>-->
+<!--                    <button name="%(action_create_subtask_wizard)d"-->
+<!--                        string="Create SubTask"-->
+<!--                        type="action"-->
+<!--                        class="oe_highlight" invisible='is_subtask == True'/>-->
+<!--                        <field name="is_subtask" force_save="1" invisible="1"/>-->
+<!--                </header>-->
 
-                <notebook position='inside'>
-                    <page string="Subtask">
-                        <field name="subtask_ids" nolabel="1" readonly="1" force_save="1">
-                            <tree name="subtask">
-                                <field name="name" string="Task Title" force_save="1"/>
-                                <field name="user_ids" widget="many2many_tags" string="Assign To" force_save="1"/>
-                                <field name="stage_id" force_save="1"/>
-                            </tree>
+<!--                <notebook position='inside'>-->
+<!--                    <page string="Subtask">-->
+<!--                        <field name="subtask_ids" nolabel="1" readonly="1" force_save="1">-->
+<!--                            <tree name="subtask">-->
+<!--                                <field name="name" string="Task Title" force_save="1"/>-->
+<!--                                <field name="user_ids" widget="many2many_tags" string="Assign To" force_save="1"/>-->
+<!--                                <field name="stage_id" force_save="1"/>-->
+<!--                            </tree>-->
 
-                        </field>
-                        <footer>
-                            <button name="cancel_test" string="Cancel" type="object" class="oe_highlight"  />
-                         </footer>
-                    </page>
-                </notebook>
-            </field>
-        </record>
+<!--                        </field>-->
+<!--                        <footer>-->
+<!--                            <button name="cancel_test" string="Cancel" type="object" class="oe_highlight"  />-->
+<!--                         </footer>-->
+<!--                    </page>-->
+<!--                </notebook>-->
+<!--            </field>-->
+<!--        </record>-->
     </data>
 </odoo>
