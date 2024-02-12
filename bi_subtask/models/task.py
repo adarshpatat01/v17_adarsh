@@ -56,11 +56,10 @@ class ProjectTask(models.Model):
     _inherit = "project.task"
 
     wiz_id = fields.Many2one('subtask.wizard', string="Wiz Parent Id")
-#     task_parent_id = fields.Many2one('project.task', string="Parent Id",)
-#     subtask_ids = fields.One2many('project.task', 'task_parent_id', string="Subtask")
-#     des = fields.Char('Task Description')
-#     is_subtask = fields.Boolean('Is a subtask')
-#     planned_hours=fields.Float('Planned hours')
+    test = fields.Char("Test")
+    des = fields.Char('Task Description')
+    is_subtask = fields.Boolean('Is a subtask')
+    planned_hours=fields.Float('Planned hours')
 #
 #
 #
