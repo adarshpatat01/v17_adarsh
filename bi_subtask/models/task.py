@@ -55,17 +55,7 @@ class subtask_wizard(models.Model):
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-<<<<<<< HEAD
-     wiz_id = fields.Many2one('subtask.wizard', string="Wiz Parent Id")
-#
-#     def read(self, fields=None, load='_classic_read'):
-#         self._ensure_fields_are_accessible(fields)
-#         return super(ProjectTask, self).read(fields=fields, load=load)
-#
-   
-=======
     wiz_id = fields.Many2one('subtask.wizard', string="Wiz Parent Id")
->>>>>>> dbd5e6f (add)
 #     task_parent_id = fields.Many2one('project.task', string="Parent Id",)
 #     subtask_ids = fields.One2many('project.task', 'task_parent_id', string="Subtask")
 #     des = fields.Char('Task Description')
