@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="bi_pos_advance_tag.AddProductTagsPopup">
+        <div class="popup popup-textarea">
+            <div class="modal-header">
+                <h4 class="modal-title"><t t-esc="props.title" /></h4>
+            </div>
+
+            <div class="modal-body">
+                <div style="overflow:hideen">
+                    <div class="tag_product_image">
+                        <img class="pro-img" t-att-src="imageUrl(props.product.id)"/>
+                    </div>
+                    <div class="body">
+                        <table class="product-tag-table">
+                            <tr>
+                                <td>
+                                    <b class="select-pro-tag">Select Product Tag</b>
+                                </td>
+                                <td>
+                                    <input class="tag_input" type="text" list="product_tag"
+                                    t-model="state.tagInput" placeholder="Select Or Enter Tag Name" t-on-keyup="changeInput"/>
+                                    <datalist class="tag-suggest-holder" id="product_tag">
+                                        <t t-foreach="env.services.pos.all_product_tag" t-as="tag" t-key="tag.id">
+                                            <option t-att-value="tag.name" t-att-data-id="tag.id">
+                                                    <t t-esc="tag.name"/>
+                                            </option>
+                                        </t>
+                                    </datalist>
+                                </td>
+                           </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <footer class="footer footer-flex modal-footer">
+               
+                <button id="add" class="button confirm highlight btn btn-lg btn-primary"  t-on-click="confirm">
+                    <t t-esc="props.confirmText" />
+                </button>
+                <button id="remove" class="button highlight btn btn-lg btn-primary" t-on-click="remove">
+                    Remove
+                </button>
+                <button class="button cancel btn btn-lg btn-secondary" t-on-mousedown.prevent="cancel">
+                    <t t-esc="props.cancelText" />
+                </button>
+            </footer>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,187 @@
+.tag_popup {
+    font-family: sans-serif !important;
+    background-color: white !important;
+    position: fixed !important;
+    width: 450px !important;
+    height: 310px;
+    border-radius: 3px !important;
+    box-shadow: 0px 4px 15.36px 0.64px rgb(0 0 0 / 10%), 0px 2px 6px 0px rgb(0 0 0 / 12%) !important;
+    animation: jelly 0.5s ease-in-out;
+    z-index: 500 !important;
+}
+.pos .rightpane-header1 {
+    justify-content: space-between;
+    padding: 0px;
+    background: #fff;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-direction: row-reverse;
+}
+.tag_product_image {
+    animation: image_move 0.75s 0.07s ease-in-out;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    height: 103px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.pro-img{
+    width: 99px;
+    height: 100%;
+}
+.product-tag-table{
+     width:80% !important;
+     margin-left: 10% !important;
+     margin-right:10% !important;
+     margin-top: 2% !important;
+}
+.select-pro-tag{
+    font-size:16px;
+}
+.tag_input {
+    width: 206px !important;
+    height: 33px;
+    border: 1px solid #cecbcb !important;
+    font-size: 16px !important;
+    color: green !important;
+    text-align: center !important;
+}
+.tag-suggest-holder {
+    position: absolute;
+    width: 45%;
+    max-height: 110px;
+    margin-left: 6%;
+    overflow-y: auto;
+    box-shadow: 0px 2px 2px 2px #bcbcbc;
+    display: none;
+}
+.buttons-add-cancel{
+    position:absolute;
+    bottom:0px;
+    right:15px;
+}
+.cancel_tag{
+    background-color: #a2504f !important;
+    color: white;
+    font-size: 16px !important;
+    border-radius: 5px !important;
+    padding: 1px 32px;
+    margin-top: 15px !important;
+    cursor: pointer !important;
+    width: 100px !important;
+    margin-bottom: 8px;
+    float: right !important;
+}
+.add_tag{
+    background-color: #6ec89b !important;
+    color: white;
+    font-size: 16px !important;
+    border-radius: 5px !important;
+    padding: 1px 32px;
+    margin-top: 15px !important;
+    cursor: pointer !important;
+    width: 125px !important;
+    margin-bottom: 8px;
+    margin-left: 11px;
+    float: right !important;
+}
+.remove_tag{
+    background-color: #6ec89b !important;
+    color: white;
+    font-size: 16px !important;
+    border-radius: 5px !important;
+    padding: 1px;
+    margin-top: 15px !important;
+    cursor: pointer !important;
+    width: 82px !important;
+    margin-bottom: 8px;
+    margin-left: 11px;
+    float: right !important;
+}
+/*.product-tag-breadcrumbs div.highlight{
+    background-color: #6EC89B !important;
+    border: 3px solid rgb(110,200,155) !important;
+}*/
+.pos .popup-textinput .cross-cancel{
+    cursor: pointer;
+    float: right;
+    border: none !important;
+    background: none !important;
+}
+
+.tag-highlight{
+    border-bottom: 3px solid #6ec89b;
+    background: #dfdfdf;
+    color: #222222;
+}
+
+.tag-breadcrumb-button{
+    display: inline-block;
+    padding: 0 9px;
+    /* vertical-align: top; */
+    color: #808080;
+    font-size: 14px;
+    cursor: pointer;
+    border-right: 1px solid #c6c5c5;
+    margin-left: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+    /* padding: 12px 10px 5px 12px; */
+    white-space: nowrap;
+}
+
+.tag-home-button{
+    float: left;
+    cursor: pointer !important;
+    border-right: 1px solid #c6c6c6;
+    padding: 1px 18px !important;
+    line-height: 46px !important;
+}
+
+.tag_done {
+    -webkit-animation: none;
+    background-color: white;
+    border-color: #5cb85c;
+    animation: none;
+}
+
+.tag_status {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-left-color: #5cb85c;
+    animation-name: load_order;
+    animation-duration: .5s;
+    display: inline-block;
+}
+
+.tag_status, .tag_status:after {
+    border-radius: 50%;
+}
+.show_tick {
+    display: none;
+}
+
+.show_tick.draw:after {
+    animation-name: show_tick;
+    transform: scaleX(-1) rotate(
+135deg
+);
+    animation-duration: 1.2s;
+    animation-timing-function: ease;
+}
+
+.show_tick:after {
+    opacity: 1;
+    height: 40px;
+    width: 20px;
+    transform-origin: left top;
+    border-right: 3px solid #5cb85c;
+    border-top: 3px solid #5cb85c;
+    content: '';
+    top: 80px;
+    right: 258px;
+    position: absolute;
+}
+

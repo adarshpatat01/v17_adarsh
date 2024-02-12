@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductsWidget" t-inherit="point_of_sale.ProductsWidget" t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//div[hasclass('products-widget-control')]" position="after">
+            <t t-if="env.services.pos.config.enable_product_tag">
+                <div class="products-widget-control-panel d-flex bg-view shadow-sm justify-content-between">
+                    <div class="rightpane-header1" t-att-class="{
+                            'grey-border-bottom': env.services.pos.config.iface_display_categ_images,
+                        }">
+                        <div class="product-tag-breadcrumbs">
+                            <div class="breadcrumb">
+                                <span id="tag_icon_clear" class="breadcrumb-button breadcrumb-home tag-clear-home-button" t-on-click="() => this._clearTags()">
+                                    <img src="/bi_pos_advance_tag/static/description/tag-deselect.png"/>
+                                </span>
+                                <span id="tag_icon" class="breadcrumb-button breadcrumb-home tag-home-button h1">
+                                    <i class="fa fa-tag" role="img" aria-label="Tag" title="Tag"/>
+                                </span>
+                                <t t-foreach="state1" t-as="tag" t-key='tag.id' t-att-data-id="tag.id" selectedHighlightTag="dataState.selectedHighlightTag">
+                                    <div class="xyz" t-on-click="() => this._onSelectedTag(tag)" style="padding-top: 15px;" t-att-data-value="tag.id" t-att-data-id="tag.id">
+                                        <li class="tag-breadcrumb-button">
+                                            <t t-esc="tag.name"/>
+                                        </li>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+           
+        </xpath>
+        <xpath expr="//div[hasclass('product-list-container')]" position="replace">
+            <div class="product-list-container flex-grow-1 overflow-y-auto">
+                <div t-if="productsToDisplay.length != 0 and pos.posHasValidProduct()" t-attf-class="product-list {{this.pos.productListViewMode}} p-1">
+                    <t t-foreach="productsToDisplay" t-as="product" t-key="product.id">                       
+                        <ProductCard
+                            class="pos.productViewMode"
+                            name="product.display_name"
+                            productId="product.id"
+                            price="getFormattedUnitPrice(product)"
+                            imageUrl="getImageUrl(product)"
+                            onClick="() =>this.pos.addProductToCurrentOrder(product)"
+
+                            
+                        />
+                    </t>
+                </div>
+                <div t-else="" class="product-list-empty no-results-message text-center mt-5">
+                    <t t-if="searchWord">
+                        <p>No products found for <b>"<t t-esc="searchWord"/>"</b> in this category.</p>
+                    </t>
+                    <t t-else="">
+                        <t t-if="pos.posHasValidProduct()">
+                            <p>There are no products in this category.</p>
+                        </t>
+                        <t t-else="">
+                            <div t-if="!state.loadingDemo">
+                                <p class="text-large">No products available. Explore <a role="button" class="button-no-demo fw-bolder" t-on-click="loadDemoDataProducts">demo data</a> or <a role="button" class="button-no-demo fw-bolder" t-on-click="createNewProducts">create your own</a>.</p>
+                            </div>
+                            <div t-else="" class="block-top-header position-absolute top-0 start-0 bg-black opacity-50 w-100 h-100 z-1000">
+                                <div class="d-flex h-100 w-100 text-white flex-row align-items-center justify-content-center">
+                                    <div class="o_spinner d-flex flex-column mb-4">
+                                        <img src="/web/static/img/spin.svg" alt="Loading..."/>
+                                        Loading...
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+                <div t-if="searchWord" class="search-more-button d-flex justify-content-center">
+                    <button class="btn btn-primary btn-lg" t-on-click="onPressEnterKey">Search more</button>
+                </div>
+                <div class="portal search-database-button no-results-message" t-att-class="{ 'd-none':  !shouldShowButton }"></div>
+            </div>
+           
+        </xpath>
+    </t>
+   
+</templates>

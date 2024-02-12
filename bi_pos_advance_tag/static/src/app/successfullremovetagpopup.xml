@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="bi_pos_advance_tag.SuccessfulRemoveTagPopup">
+        <div class="popup popup-textarea">
+            <div class="modal-header">
+                <h4 class="modal-title"><t t-esc="props.title" /></h4>
+            </div>
+
+            <div class="modal-body">
+                <div style="height: 80px; width: 80px; margin-top: 37px; border-color: rgb(92, 184, 92);" class="tag_status tag_done">
+                    <div class="show_tick draw" style="display: block;">
+                    </div>
+                </div>
+                <h4 style="color:#5cb85c">Tag is successfully removed into the Product</h4>
+            </div>
+
+            <footer class="footer footer-flex modal-footer">
+               
+                <div class="button cancel btn btn-lg btn-secondary" t-on-click="cancel">
+                    <t t-esc="props.cancelText" />
+                </div>
+            </footer>
+        </div>
+    </t>
+
+</templates>
