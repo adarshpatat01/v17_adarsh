@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h2 class="mt16">
+                            Order # <span t-field="doc.name"/>
+                        </h2>
+                         <div class="row mt-4 mb-4" id="informations">
+                            <div t-if="doc.session_id" class="col-auto col-3 mw-100 mb-2">
+                                <strong>Session</strong>
+                                <p class="m-0" t-field="doc.session_id.name"/>
+                            </div>
+                            <div t-if="doc.date_order " class="col-auto col-3 mw-100 mb-2">
+                                <strong>Order Date</strong>
+                                <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                            </div>
+                            <div t-if="doc.partner_id" class="col-auto col-3 mw-100 mb-2">
+                                <strong>Customer</strong>
+                                <p class="m-0" t-field="doc.partner_id.name" />
+                            </div>
+                            <div t-if="doc.user_id" class="col-auto col-3 mw-100 mb-2" name="user_id">
+                                <strong>User</strong>
+                                <p class="m-0" t-field="doc.user_id.name"/>
+                            </div>
+                        </div>
+                        <div style="height:20%"/>
+                        <table class="table table-sm o_main_table mt-4">
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_product" class="text-left">Product</th>
+                                    <th name="th_quantity" class="text-right">Quantity</th>
+                                    <th name="th_priceunit" class="text-right">Unit Price</th>
+                                    <th name="th_discount" class="text-right">
+                                        <span>Disc.%</span>
+                                    </th>
+                                    <th name="th_taxes" class="text-left">Taxes</th>
+                                    <th name="th_subtotal_wo_tax" class="text-right">Subtotal w/o Tax</th>
+                                    <th name="th_subtotal" class="text-right">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="doc.lines" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.full_product_name"/></td>
+                                        <td class="text-right"><span t-field="line.qty"/></td>
+                                        <td class="text-right"><span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                        <td class="text-right"><span t-field="line.discount"/></td>
+                                        <td class="text-left">
+                                            <span t-esc="', '.join(map(lambda x: (x.name), line.tax_ids_after_fiscal_position))"/>
+                                        </td>
+                                        <td class="text-right"><span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                        <td class="text-right"><span t-field="line.price_subtotal_incl" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix float-end" name="so_total_summary">
+                        <div id="total" class="row" name="total">
+                            <div class="text-right">
+                                <table class="table table-sm text-right">
+                                    <tr>
+                                        <td><th>Taxes:</th></td>
+                                        <td><t t-esc="doc.amount_tax" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                    </tr>
+                                     <tr>
+                                        <td><th>Total:</th></td>
+                                        <td><t t-esc="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                    </tr>
+                                     <tr>
+                                        <td><th>Total Paid (With Rounding):</th></td>
+                                        <td><t t-esc="doc.amount_paid" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                     </tr>
+                                    <tr>
+                                        <td><th>Margin:</th></td>
+                                        <td><t t-esc="doc.margin" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                                     </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="pos_order_report_card_pdf" model="ir.actions.report">
+            <field name="name">POS Order Report</field>
+            <field name="model">pos.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_pos_customer_feedback.report_card</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_pos_order"/>
+        </record>
+
+</odoo>

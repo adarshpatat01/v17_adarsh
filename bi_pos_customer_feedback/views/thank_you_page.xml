@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="feedback_thank_you_page" name="Thank You">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
+                    <div class="container s_allow_columns">
+                        <div class="row">
+                            <div style="color: darkgreen;background: #e3fbe3;font-size: 18px;width: 50%;padding: 28px;">
+                                <p>Dear <t t-esc="name"/> ,</p>
+                                <p>Your feedback was successfully received.</p>
+                                <p>Thank You</p>
+                            </div>
+
+                        </div>
+                        <br></br>
+                        <div class="row" style="width:15%">
+                            <a href="/" class="fa fa-arrow-circle-left btn-primary" style="padding:10px;border-radius: 5px;">&amp;nbsp;&amp;nbsp;Go to Website</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

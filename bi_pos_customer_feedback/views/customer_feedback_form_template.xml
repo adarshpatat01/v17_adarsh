@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="customer_feedback_form" name="Customer Feedback Form">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container oe_website_sale py-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <form id="feedback_form" action="/feedback/form/submit" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="mail.mail" data-success-mode="redirect" data-success-page="/contactus-thank-you" data-pre-fill="true">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                <div class="s_website_form_rows row s_col_no_bgcolor">
+
+                                    <div class="form-group col-12 s_website_form_field s_website_form_dnone">
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="name">
+                                                <span class="s_website_form_label_content label_content">Name</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input id="name" type="text" class="form-control s_website_form_input" readonly="readonly" name="name" t-att-value="name"/>
+                                            </div>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="receipt_number">
+                                                <span class="s_website_form_label_content label_content">POS Receipt Number</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input id="receipt_number" type="text" readonly="readonly" class="form-control s_website_form_input" name="receipt_number" t-att-value="receipt_number"/>
+                                            </div>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor text-center">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="para_note">
+                                                <span class="s_website_form_label_content h2">Rating &amp; Feedback</span>
+                                            </label>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="service">
+                                                <span class="s_website_form_label_content label_content">Overall Service</span>
+                                            </label>
+                                             <div class="col-sm">
+                                                 <input type="radio" id="service_poor" name="service_val" value="Poor"/>
+                                                 <label for="service_poor" class="font-weight-normal mr-3">Poor</label>
+                                                 <input type="radio" id="service_average" name="service_val" value="Average"/>
+                                                 <label for="service_average" class="font-weight-normal mr-3">Average</label>
+                                                 <input type="radio" id="service_good" name="service_val" value="Good"/>
+                                                 <label for="service_good" class="font-weight-normal mr-3">Good</label>
+                                                 <input type="radio" id="service_very_good" name="service_val" value="Very Good"/>
+                                                 <label for="service_very_good" class="font-weight-normal mr-3">Very Good</label>
+                                                  <input type="radio" id="service_excellent" name="service_val" value="Excellent"/>
+                                                 <label for="service_excellent" class="font-weight-normal mr-3">Excellent</label>
+                                             </div>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="price">
+                                                <span class="s_website_form_label_content label_content">Price</span>
+                                            </label>
+                                             <div class="col-sm">
+                                                 <input type="radio" id="price_unsatisfied" name="price_val" value="Unsatisfied"/>
+                                                 <label for="price_unsatisfied" class="font-weight-normal mr-3">Unsatisfied</label>
+                                                 <input type="radio" id="price_very_unsatisfied" name="price_val" value="Very Unsatisfied"/>
+                                                 <label for="price_very_unsatisfied" class="font-weight-normal mr-3">Very Unsatisfied</label>
+                                                 <input type="radio" id="price_satisfied" name="price_val" value="Satisfied"/>
+                                                 <label for="price_satisfied" class="font-weight-normal mr-3">Satisfied</label>
+                                                 <input type="radio" id="price_very_satisfied" name="price_val" value="Very Satisfied"/>
+                                                 <label for="price_very_satisfied" class="font-weight-normal mr-3">Very Satisfied</label>
+                                             </div>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="product">
+                                                <span class="s_website_form_label_content label_content">Product</span>
+                                            </label>
+                                             <div class="col-sm">
+                                                 <input type="radio" id="product_unsatisfied" name="product_val" value="Unsatisfied"/>
+                                                 <label for="product_unsatisfied" class="font-weight-normal mr-3">Unsatisfied</label>
+                                                 <input type="radio" id="product_very_unsatisfied" name="product_val" value="Very Unsatisfied"/>
+                                                 <label for="product_very_unsatisfied" class="font-weight-normal mr-3">Very Unsatisfied</label>
+                                                 <input type="radio" id="product_satisfied" name="product_val" value="Satisfied"/>
+                                                 <label for="product_satisfied" class="font-weight-normal mr-3">Satisfied</label>
+                                                 <input type="radio" id="very_satisfied" name="product_val" value="Very Satisfied"/>
+                                                 <label for="very_satisfied" class="font-weight-normal mr-3">Very Satisfied</label>
+                                             </div>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="shop_exp">
+                                                <span class="s_website_form_label_content label_content">Shopping Experience</span>
+                                            </label>
+                                             <div class="col-sm">
+                                                 <input type="radio" id="shop_exp_unsatisfied" name="shop_exp_val" value="Unsatisfied"/>
+                                                 <label for="shop_exp_unsatisfied" class="font-weight-normal mr-3">Unsatisfied</label>
+                                                 <input type="radio" id="shop_exp_average" name="shop_exp_val" value="Average"/>
+                                                 <label for="shop_exp_average" class="font-weight-normal mr-3">Average</label>
+                                                 <input type="radio" id="shop_exp_satisfied" name="shop_exp_val" value="Satisfied"/>
+                                                 <label for="shop_exp_satisfied" class="font-weight-normal mr-3">Satisfied</label>
+                                                 <input type="radio" id="shop_exp_outstanding" name="shop_exp_val" value="Outstanding"/>
+                                                 <label for="shop_exp_outstanding" class="font-weight-normal mr-3">Outstanding</label>
+                                             </div>
+                                        </div>
+                                        <div class="s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" for="order_bill">
+                                                <span class="s_website_form_label_content label_content">Ordering &amp; Billing</span>
+                                            </label>
+                                             <div class="col-sm">
+                                                 <input type="radio" id="order_bill_unsatisfied" name="order_bill_val" value="Unsatisfied"/>
+                                                 <label for="order_bill_unsatisfied" class="font-weight-normal mr-3">Unsatisfied</label>
+                                                 <input type="radio" id="order_bill_average" name="order_bill_val" value="Average"/>
+                                                 <label for="order_bill_average" class="font-weight-normal mr-3">Average</label>
+                                                 <input type="radio" id="order_bill_satisfied" name="order_bill_val" value="Satisfied"/>
+                                                 <label for="order_bill_satisfied" class="font-weight-normal mr-3">Satisfied</label>
+                                                 <input type="radio" id="order_bill_outstanding" name="order_bill_val" value="Outstanding"/>
+                                                 <label for="order_bill_outstanding" class="font-weight-normal mr-3">Outstanding</label>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12 s_website_form_field s_website_form_dnone s_col_no_resize s_col_no_bgcolor mb-5">
+                                        <label class="col-form-label col-sm-auto s_website_form_label" for="customer_review">
+                                            <span class="s_website_form_label_content label_content">Feedback Comment</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <textarea id="customer_review" type="text" class="form-control s_website_form_input" name="customer_review"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12 s_website_form_field s_website_form_dnone text-center">
+                                        <button type="submit" class="btn btn-default btn-primary mb32 a-submit">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

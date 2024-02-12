@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="customer_feedback_mail_template" model="mail.template">
+            <field name="name">Customer FeedBack &amp; Ratings</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Customer FeedBack &amp; Ratings</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <p>Dear <t t-out="ctx.get('customer_name')"/> ,</p>
+                    <p>Thank you for visiting our store. Please click on the button below to provide us with your valuable comments.</p>
+                    <br/>
+                    <a t-att-href="('/customer-feedback-form/%s/%s' %(ctx.get('customer'),ctx.get('receipt_number')))"
+                        class="mail_btn">For Feedback, Please Click Here</a>
+                    <br/>
+                    <br/>
+                    <p>If you have any questions, don't be afraid to ask.</p>
+                </div>
+                <div class="text-center p-4">
+                    <a t-att-href="('/unsubscribe/%s/' %(ctx.get('customer')))" class="mail_btn">UNSUBSCRIBE</a>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

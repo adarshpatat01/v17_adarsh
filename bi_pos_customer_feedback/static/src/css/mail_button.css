@@ -1,0 +1,9 @@
+.mail_btn {
+    box-sizing: border-box;
+    background-color: #875A7B;
+    padding: 8px 16px 8px 16px;
+    text-decoration: none;
+    color: white !important;
+    border-radius: 5px;
+    font-size: 13px;
+}

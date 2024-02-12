@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_order_view_form_pos_customer_feedback" model="ir.ui.view">
+        <field name="name">pos.order.view.form.inherit.point_of_sale.pos.customer.feedback</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='notes']" position="after">
+                <page string="Feedback &amp; Rating" name="feedback">
+                    <group>
+                        <group>
+                            <field name="service"/>
+                            <field name="product"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="order_billing"/>
+                            <field name="shopping_exp"/>
+                            <field name="customer_review"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
