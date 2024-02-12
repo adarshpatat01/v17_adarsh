@@ -17,11 +17,11 @@
                             </tree>
                         </field>
                     </sheet>
-                    <footer>
-<!--                        <button name="create_subtask" string="Create" type="object" class="oe_highlight" />-->
-<!--                        or-->
-                        <button string="Cancel" class="oe_link" special="cancel" />
-                    </footer>
+<!--                    <footer>-->
+<!--&lt;!&ndash;                        <button name="create_subtask" string="Create" type="object" class="oe_highlight" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        or&ndash;&gt;-->
+<!--                        <button string="Cancel" class="oe_link" special="cancel" />-->
+<!--                    </footer>-->
                 </form>
             </field>
         </record>
