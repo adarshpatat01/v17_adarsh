@@ -30,7 +30,7 @@
             'bi_pos_advance_tag/static/src/css/pos.css',
             'bi_pos_advance_tag/static/src/app/models.js',
             # 'bi_pos_advance_tag/static/src/app/posdb.js',
-            # 'bi_pos_advance_tag/static/src/app/pos_store.js',
+            'bi_pos_advance_tag/static/src/app/pos_store.js',
             
             # 'bi_pos_advance_tag/static/src/app/addproducttagpopup.js',
             # 'bi_pos_advance_tag/static/src/app/addproducttagpopup.xml',
