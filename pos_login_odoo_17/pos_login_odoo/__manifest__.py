@@ -42,9 +42,9 @@ odoo pos screen directly point of sales cashier login point of sales direct logi
     },
     "auto_install": False,
     "installable": True,
-    "external_dependencies": {"python": ["easygui"]},
     "live_test_url":'https://youtu.be/UkGZ-fb6GBM',
     "images":['static/description/Banner.gif'],
     'license': 'OPL-1',
+    "external_dependencies": {"python": ["easygui"]},
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
