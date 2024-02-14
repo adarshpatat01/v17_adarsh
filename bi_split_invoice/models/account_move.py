@@ -29,8 +29,8 @@ class AccountMove(models.Model):
             yield
             if disabled:
                 return
-        if not self._context.get('skip_raise_error', False):
-            super(AccountMove,self )._check_balanced(container)
+        # if not self._context.get('skip_raise_error', False):
+        #     super(AccountMove,self )._check_balanced(container)
 
             
     def select_all(self):
