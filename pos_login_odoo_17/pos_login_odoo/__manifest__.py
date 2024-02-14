@@ -6,6 +6,9 @@
     "version" : "17.0.0.0",
     "category" : "Point of Sale",
     "depends" : ['base','sale_management','point_of_sale','website'],
+    'external_dependencies': {
+            'python': ['easygui']
+        },
     "author": "BrowseInfo",
     'summary': 'Apps allows to Redirect on POS screen without going to backend POS Direct Login Odoo POS screen login POS user POS session login User Direct Login pos screen login point of sales direct pos login pos sign in pos signin direct pos direct sign in pos access',
     "description": """
@@ -45,6 +48,5 @@ odoo pos screen directly point of sales cashier login point of sales direct logi
     "live_test_url":'https://youtu.be/UkGZ-fb6GBM',
     "images":['static/description/Banner.gif'],
     'license': 'OPL-1',
-    "external_dependencies": {"python": ["easygui"]},
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
