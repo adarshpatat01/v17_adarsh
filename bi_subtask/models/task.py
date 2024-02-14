@@ -98,14 +98,14 @@ class ProjectTask(models.Model):
             'tag': 'reload',
         }
 
-    def _compute_subtask_count(self):
-        result = super(ProjectTask, self)._compute_subtask_count()
-        for task in self:
-            task_ids = self.env['project.task'].search([('task_parent_id', '=', task.id)])
-            if task_ids:
-                task.subtask_count = len(task_ids)
-                task.parent_id = task.task_parent_id
-        return result
+    # def _compute_subtask_count(self):
+    #     result = super(ProjectTask, self)._compute_subtask_count()
+    #     for task in self:
+    #         task_ids = self.env['project.task'].search([('task_parent_id', '=', task.id)])
+    #         if task_ids:
+    #             task.subtask_count = len(task_ids)
+    #             task.parent_id = task.task_parent_id
+    #     return result
 
     @api.onchange('stage_id')
     def button_is_visible(self):
