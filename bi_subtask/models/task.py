@@ -6,6 +6,52 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
+PROJECT_TASK_READABLE_FIELDS = {
+    'id',
+    'active',
+    'priority',
+    'project_id',
+    'display_in_project',
+    'color',
+    'subtask_count',
+    'email_from',
+    'create_date',
+    'write_date',
+    'company_id',
+    'displayed_image_id',
+    'display_name',
+    'portal_user_names',
+    'user_ids',
+    'display_parent_task_button',
+    'allow_milestones',
+    'milestone_id',
+    'has_late_and_unreached_milestone',
+    'date_assign',
+    'dependent_ids',
+    'message_is_follower',
+    'recurring_task',
+    'closed_subtask_count',
+}
+
+PROJECT_TASK_WRITABLE_FIELDS = {
+    'name',
+    'description',
+    'task_parent_id',
+    'subtask_ids',
+    'partner_id',
+    'date_deadline',
+    'date_last_stage_update',
+    'tag_ids',
+    'sequence',
+    'stage_id',
+    'child_ids',
+    'parent_id',
+    'priority',
+    'state',
+}
+
+
+
 class res_config_settings(models.TransientModel):
     _inherit = 'res.config.settings'
 
@@ -62,6 +108,14 @@ class ProjectTask(models.Model):
     des = fields.Char('Task Description')
     is_subtask = fields.Boolean('Is a subtask')
     planned_hours=fields.Float('Planned hours')
+
+    @property
+    def SELF_READABLE_FIELDS(self):
+        return PROJECT_TASK_READABLE_FIELDS | self.SELF_WRITABLE_FIELDS
+
+    @property
+    def SELF_WRITABLE_FIELDS(self):
+        return PROJECT_TASK_WRITABLE_FIELDS
 #
 #
 #
